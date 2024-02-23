@@ -6,7 +6,7 @@ from starlette import status
 
 router = APIRouter(
     prefix="/user",
-    tags=["user"],
+    tags=["User"],
 )
 
 
