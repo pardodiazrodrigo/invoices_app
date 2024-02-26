@@ -24,6 +24,7 @@ class UserDB(Base):
     first_name: Mapped[str]
     last_name: Mapped[str]
     role: Mapped[str] = mapped_column(default="user")
+    phone_number: Mapped[str] = mapped_column(default="")
 
 
 class InvoiceDB(Base):
