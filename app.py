@@ -13,3 +13,8 @@ app.include_router(users.router)
 @app.get("/",  tags=["Root"])
 async def root():
     return {"message": "Server is running"}
+
+
+@app.get("/healthy")
+def health_check():
+    return {"status": "ok"}

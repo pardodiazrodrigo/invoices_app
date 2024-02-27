@@ -1,5 +1,7 @@
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column, Session
+from fastapi import Depends
+from typing import Annotated
 
 
 SQLALCHEMY_DB_URL = 'sqlite:///./invoice.db'
@@ -42,7 +44,6 @@ class InvoiceDB(Base):
 
 engine = create_engine(SQLALCHEMY_DB_URL, connect_args={"check_same_thread": False})
 sessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
-Base.metadata.create_all(bind=engine)
 
 
 def get_db():
