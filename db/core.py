@@ -1,7 +1,5 @@
 from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column, Session
-from fastapi import Depends
-from typing import Annotated
+from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
 
 
 SQLALCHEMY_DB_URL = 'sqlite:///./invoice.db'

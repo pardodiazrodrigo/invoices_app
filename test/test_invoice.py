@@ -17,20 +17,20 @@ Base.metadata.create_all(bind=engine)
 
 def override_get_db():
     db = TestingSessionLocal()
-    print("BEFORE")
     try:
-        print("AFTER")
         yield db
     finally:
-        print("FINALLY")
         db.close()
 
 
-def override_get_current_user(user_id: int) -> dict:
+def override_get_current_user():
     """
     Overrides the get_current_user function to return a testing user
     """
-    return {"username": "admin", "id": 1, 'role': 'admin'}
+    username = 'admin'
+    role = 'admin'
+    user_id = 1
+    return {"username": username, "id": user_id, 'role': role}
 
 
 app.dependency_overrides[get_db] = override_get_db
@@ -42,3 +42,4 @@ client = TestClient(app)
 def test_read_all_authenticated():
     response = client.get("/api/invoices")
     assert response.status_code == status.HTTP_200_OK
+    assert response.json() == []
