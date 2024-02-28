@@ -34,8 +34,8 @@ async def create_invoice(user: user_dependency, invoice: InvoiceCreate, db: Sess
     return Invoice(**db_invoice.__dict__)
 
 
-@router.get("/invoice", status_code=status.HTTP_200_OK)
-async def read_invoice(user: user_dependency, invoice_id: int = Query(gt=0), db: Session = Depends(get_db)):
+@router.get("/invoice/{invoice_id}", status_code=status.HTTP_200_OK)
+async def read_invoice(user: user_dependency, invoice_id: int, db: Session = Depends(get_db)):
     try:
         db_invoice = read_db_invoice(invoice_id, db, user.get('id'))
     except NotFoundError as e:
