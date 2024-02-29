@@ -1,6 +1,6 @@
 .venv
 .idea
-.invoicedb
+invoicedb
 __pycache__
 db/__pycache__
 routers/__pycache__
