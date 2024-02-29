@@ -90,9 +90,7 @@ def authenticate_user(username: str, password: str, db):
         return False
     if not bcrypt_context.verify(password, user.hashed_password):
         return False
-    token = create_access_token(user.username, user.id, user.role, timedelta(minutes=20))
-
-    return token
+    return user
 
 
 def create_access_token(username: str, user_id: int, role: str, expires_delta: timedelta):
@@ -102,7 +100,7 @@ def create_access_token(username: str, user_id: int, role: str, expires_delta: t
     return jwt.encode(encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-async def get_current_user(token: str = Depends(oauth2_bearer)):
+async def get_current_user(token: str = Depends(oauth2_bearer)) -> dict:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")

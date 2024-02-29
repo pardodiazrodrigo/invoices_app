@@ -10,3 +10,4 @@ python-jose[crytography]
 alembic
 pytest
 httpx
+pytest-asyncio

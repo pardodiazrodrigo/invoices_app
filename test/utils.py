@@ -82,12 +82,12 @@ def test_invoice_user_id_2():
 @pytest.fixture
 def test_user():
     user = UserDB(
-        username="test123",
+        username="admin",
         hashed_password=bcrypt_context.hash("test123"),
-        email="mail@mail.com",
+        email="admin@mail.com",
         role="admin",
-        first_name="test",
-        last_name="test"
+        first_name="admin",
+        last_name="admin"
     )
 
     db = TestingSessionLocal()
