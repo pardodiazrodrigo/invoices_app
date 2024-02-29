@@ -1,7 +1,7 @@
 .venv
 .idea
-invoicedb
 __pycache__
 db/__pycache__
 routers/__pycache__
 testdb.db
+invoicedb

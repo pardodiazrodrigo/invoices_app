@@ -42,6 +42,7 @@ class InvoiceDB(Base):
 
 engine = create_engine(SQLALCHEMY_DB_URL, connect_args={"check_same_thread": False})
 sessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+Base.metadata.create_all(bind=engine)
 
 
 def get_db():
