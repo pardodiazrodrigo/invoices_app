@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
+from decouple import config
 
-
-SQLALCHEMY_DB_URL = 'sqlite:///./invoice.db'
+SQLALCHEMY_DB_URL = config("DATABASE_URL")
 
 
 class Base(DeclarativeBase):
@@ -40,7 +40,7 @@ class InvoiceDB(Base):
     paid: Mapped[bool] = mapped_column(default=False)
 
 
-engine = create_engine(SQLALCHEMY_DB_URL, connect_args={"check_same_thread": False})
+engine = create_engine(SQLALCHEMY_DB_URL)
 sessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 Base.metadata.create_all(bind=engine)
 

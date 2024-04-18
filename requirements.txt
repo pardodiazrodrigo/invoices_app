@@ -11,3 +11,4 @@ alembic
 pytest
 httpx
 pytest-asyncio
+python-decouple
